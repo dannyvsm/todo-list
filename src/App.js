@@ -1,21 +1,24 @@
 import './App.css';
 import React, { useState } from "react";
-import Form from "./components/Form.jsx"
+import Form from "./components/Form.jsx";
 
 const App = () => {
+  const [todoItems, setTodoItems] = useState([])
+  
   const handleForm = (userInput) => {
-    console.log(userInput)
+    setTodoItems([...todoItems, userInput]);
   };
 
   return (
     <div>
       <h1>To-Do App</h1>
       <Form handleForm={handleForm}/>
-      <h4>{userInput}</h4>
       <ul>
-        <li>item one</li>
-        <li>item two</li>
-        <li>item three</li>
+        {
+          todoItems.map((item, index) => {
+            return <li key={index}>{item}</li>;
+          })
+        }
       </ul>
     </div>
   );
